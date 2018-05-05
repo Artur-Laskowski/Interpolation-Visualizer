@@ -60,7 +60,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-	// TODO: Place code here.
 	initialize();
 
 
@@ -203,11 +202,11 @@ void initialize()
 	}
 	int newSize = j;
 
-	//tablica z wartosciami M_0, M_1, ..., M_n
+	//array with values M_0, M_1, ..., M_n
 	double* mArray = (double *)calloc(newSize + 1, sizeof(double));
-	//wypelnienie tablicy M
+	//filling of array M
 	initSplineInterpolate(xArrNew, yArrNew, newSize, mArray);
-	//nowa tablica na wyniki z CSI
+	//new array containing results from CSI
 	yArr2 = (double *)malloc(size * sizeof(double));
 	for (int i = 0; i < size; i++)
 	{
@@ -395,10 +394,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			double yPrev = transformY(yMin);
 			TextOutA(hdc, xPrev, winHeight - yPrev, text, strlen(text));
 
-			sprintf(text, "Sredni blad: %.6f",errorSum);
+			sprintf(text, "Average error: %.6f",errorSum);
 			TextOutA(hdc, 10, 10, text, strlen(text));
 
-			sprintf(text, "Sredni blad sklejanych: %.6f", errorSumSplines);
+			sprintf(text, "Average splines error: %.6f", errorSumSplines);
 			TextOutA(hdc, 10, 30, text, strlen(text));
 
 			xMax = transformX(xMax);
